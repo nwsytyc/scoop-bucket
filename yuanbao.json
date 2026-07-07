@@ -1,0 +1,49 @@
+{
+    "version": "2.74.0.623",
+    "description": "腾讯元宝 - AI智能助手，支持深度推理、联网搜索、划词搜索及多模态交互",
+    "homepage": "https://yuanbao.tencent.com",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://yuanbao.tencent.com"
+    },
+    "url": "https://cdn-hybrid-prod.hunyuan.tencent.com/Desktop/business/channels/yuanbao_10046_x64.exe",
+    "hash": "4a3d7d8993a6eec5d5438bd8b7a0212c4b29df2001f0e85a89232f9c8579bc2a",
+    "installer": {
+        "script": [
+            "if (!(Test-Path \"$dir\\yuanbao.exe\")) {",
+            "    # NSIS installer: run silently",
+            "    Start-Process \"$dir\\yuanbao_10046_x64.exe\" -ArgumentList '/S',\"/D=$dir\" -Wait -WindowStyle Hidden",
+            "    # Move installed files to Scoop dir",
+            "    $installDir = \"$env:LOCALAPPDATA\\YuanBao\"",
+            "    if (Test-Path $installDir) {",
+            "        Copy-Item \"$installDir\\*\" \"$dir\" -Recurse -Force",
+            "    }",
+            "}",
+            "Remove-Item \"$dir\\yuanbao_10046_x64.exe\" -Force -ErrorAction SilentlyContinue"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "$uninstallExe = Get-ChildItem \"$dir\" -Filter 'Uninstall*.exe' -Recurse | Select-Object -First 1",
+            "if ($uninstallExe) {",
+            "    Start-Process $uninstallExe.FullName -ArgumentList '/S' -Wait -WindowStyle Hidden",
+            "}",
+            "Remove-Item \"$dir\\*\" -Recurse -Force -ErrorAction SilentlyContinue"
+        ]
+    },
+    "bin": "yuanbao.exe",
+    "shortcuts": [
+        [
+            "yuanbao.exe",
+            "元宝"
+        ]
+    ],
+    "checkver": {
+        "url": "https://pc.qq.com/detail/10/detail_45590.html",
+        "regex": "([\\d.]+)"
+    },
+    "autoupdate": {
+        "note": "元宝 CDN URL 不含版本号，始终指向最新版本。新版本发布后需手动更新 hash。",
+        "url": "https://cdn-hybrid-prod.hunyuan.tencent.com/Desktop/business/channels/yuanbao_10046_x64.exe"
+    }
+}
