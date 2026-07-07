@@ -146,12 +146,15 @@
     "mybucket": [
       "workbuddy",
       "yuanbao",
-      "thebrain"
+      "thebrain",
+      "updf",
+      "typeless"
     ]
   },
   "winget": [
     "Tencent.ima-copilot",
-    "Tencent.Yuanbao"
+    "Tencent.Yuanbao",
+    "NetEase.UURemote"
   ],
   "held": {
     "comfyui": "0.3.66"
