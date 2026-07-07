@@ -42,6 +42,7 @@
       "nodejs-lts",
       "oh-my-posh",
       "oh-my-pi",
+      "opencode",
       "python",
       "scoop-search",
       "sudo",
@@ -143,8 +144,7 @@
       "sendme"
     ],
     "mybucket": [
-      "workbuddy",
-      "opencode"
+      "workbuddy"
     ]
   },
   "held": {

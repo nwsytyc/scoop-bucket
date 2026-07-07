@@ -42,14 +42,12 @@ Apps not available in any public Scoop bucket, maintained here:
 | App | Description |
 |-----|-------------|
 | [workbuddy](workbuddy.json) | AI-native desktop Agent WorkBench (腾讯云 CodeBuddy) |
-| [opencode](opencode.json) | Open source AI coding agent |
 
 ### Install individually
 
 ```powershell
 scoop bucket add mybucket https://github.com/nwsytyc/scoop-bucket.git
 scoop install mybucket/workbuddy
-scoop install mybucket/opencode
 ```
 
 ## Package List
@@ -58,7 +56,7 @@ The full app suite is declared in [packages.json](packages.json) — 100+ apps a
 
 | Bucket | Apps | Count |
 |--------|------|-------|
-| main | 1password-cli, 7zip, aria2, bbdown, bun, cacert, clink, cmder, claude-code, codex, curl, dark, deepseek-tui, edit, ffmpeg, gh, git, gow, innounp, kimi-cli, lsd, neovim, nodejs-lts, oh-my-posh, oh-my-pi, python, scoop-search, sudo, tldr, wget, warp, yt-dlp | 32 |
+| main | 1password-cli, 7zip, aria2, bbdown, bun, cacert, clink, cmder, claude-code, codex, curl, dark, deepseek-tui, edit, ffmpeg, gh, git, gow, innounp, kimi-cli, lsd, neovim, nodejs-lts, oh-my-posh, oh-my-pi, opencode, python, scoop-search, sudo, tldr, wget, warp, yt-dlp | 33 |
 | extras | anki, beyondcompare, calibre, carotdav, cc-switch, clash-party, cupscale, discord, ditto, dropit, emacs, everything, fastcopy, flow-launcher, foobar2000, foobar2000-encoders, fork, freetube, gimp, glazewm, googlechrome, homebank, joplin, listary, logseq, motrix, neeview, notion, obsidian, opera, potplayer, q-dir, qq, qview, retroarch, sharpkeys, slack, snipaste, telegram, tightvnc, treesheets, typora, unlocker, vncviewer, vscode, wechat, wecom, wireshark, wox, xnview, zebar, zed, zen-browser | 54 |
 | versions | innounp-unicode, nodejs20 | 2 |
 | sysinternals | process-explorer, pstools | 2 |
@@ -69,7 +67,7 @@ The full app suite is declared in [packages.json](packages.json) — 100+ apps a
 | extras-plus | comfyui | 1 |
 | go-musicfox | go-musicfox | 1 |
 | main-plus | sendme | 1 |
-| mybucket | workbuddy, opencode | 2 |
+| mybucket | workbuddy | 1 |
 | **Total** | | **103** |
 
 ### Held Packages
@@ -80,7 +78,7 @@ The full app suite is declared in [packages.json](packages.json) — 100+ apps a
 
 ## How It Works
 
-- **Custom manifests** (workbuddy, opencode) live in this repo — `scoop install mybucket/<app>` pulls from here
+- **Custom manifests** (workbuddy) live in this repo — `scoop install mybucket/<app>` pulls from here
 - **Public bucket apps** stay in their upstream buckets — no duplication, auto-updates flow from upstream
 - **packages.json** is the declarative source of truth for the full app list
 - **setup.ps1** reads packages.json and installs everything in one shot
@@ -94,4 +92,4 @@ The full app suite is declared in [packages.json](packages.json) — 100+ apps a
 ## Notes
 
 - **WorkBuddy**: The official Extras-CN bucket uses `innounp` for Inno Setup format, but newer versions (>=5.1.7) switched to NSIS. This manifest handles NSIS extraction properly.
-- **opencode**: Auto-generated manifest not available in any public bucket; maintained here with GitHub autoupdate.
+- **opencode**: Now available in the `main` bucket — no longer needs a custom manifest here.
