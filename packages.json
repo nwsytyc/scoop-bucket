@@ -144,9 +144,14 @@
       "sendme"
     ],
     "mybucket": [
-      "workbuddy"
+      "workbuddy",
+      "yuanbao"
     ]
   },
+  "winget": [
+    "Tencent.ima-copilot",
+    "Tencent.Yuanbao"
+  ],
   "held": {
     "comfyui": "0.3.66"
   }
