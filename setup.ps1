@@ -88,7 +88,7 @@ if (-not $SkipApps) {
 
 # ── 3. Hold pinned versions ──
 if ($pkg.held -and -not $DryRun) {
-    Write-Host "`n[3/3] Setting held packages..." -ForegroundColor Cyan
+    Write-Host "`n[3/4] Setting held packages..." -ForegroundColor Cyan
     foreach ($hold in $pkg.held.PSObject.Properties) {
         $app = $hold.Name
         $ver = $hold.Value
@@ -97,4 +97,31 @@ if ($pkg.held -and -not $DryRun) {
     }
 }
 
-Write-Host "`nDone! Run 'scoop update --all' to get the latest versions.`n" -ForegroundColor Green
+# ── 4. Install winget apps ──
+if ($pkg.winget -and -not $SkipApps) {
+    Write-Host "`n[4/4] Installing winget apps..." -ForegroundColor Cyan
+
+    # Ensure winget is available
+    if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
+        Write-Host "  winget not found. Install Microsoft App Installer from the Store first." -ForegroundColor Yellow
+    } else {
+        foreach ($wgApp in $pkg.winget) {
+            if ($DryRun) {
+                Write-Host "  [dry]  winget install $wgApp --accept-package-agreements --accept-source-agreements" -ForegroundColor Yellow
+                continue
+            }
+
+            # Check if already installed
+            $already = winget list --id $wgApp --source winget 2>$null | Select-String -Pattern $wgApp
+            if ($already) {
+                Write-Host "  [skip] $wgApp (already installed)" -ForegroundColor DarkGray
+                continue
+            }
+
+            Write-Host "  Installing $wgApp via winget..." -ForegroundColor White
+            winget install --id $wgApp --source winget --accept-package-agreements --accept-source-agreements
+        }
+    }
+}
+
+Write-Host "`nDone! Run 'scoop update --all' to get the latest Scoop versions.`n" -ForegroundColor Green
