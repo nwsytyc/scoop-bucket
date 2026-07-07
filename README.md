@@ -42,12 +42,14 @@ Apps not available in any public Scoop bucket, maintained here:
 | App | Description |
 |-----|-------------|
 | [workbuddy](workbuddy.json) | AI-native desktop Agent WorkBench (腾讯云 CodeBuddy) |
+| [yuanbao](yuanbao.json) | 腾讯元宝 - AI智能助手，深度推理+联网搜索+划词搜索 |
 
 ### Install individually
 
 ```powershell
 scoop bucket add mybucket https://github.com/nwsytyc/scoop-bucket.git
 scoop install mybucket/workbuddy
+scoop install mybucket/yuanbao
 ```
 
 ## Package List
@@ -67,8 +69,9 @@ The full app suite is declared in [packages.json](packages.json) — 100+ apps a
 | extras-plus | comfyui | 1 |
 | go-musicfox | go-musicfox | 1 |
 | main-plus | sendme | 1 |
-| mybucket | workbuddy | 1 |
-| **Total** | | **103** |
+| mybucket | workbuddy, yuanbao | 2 |
+| **winget** | Tencent.ima-copilot, Tencent.Yuanbao | 2 |
+| **Total** | | **105** |
 
 ### Held Packages
 
@@ -78,10 +81,11 @@ The full app suite is declared in [packages.json](packages.json) — 100+ apps a
 
 ## How It Works
 
-- **Custom manifests** (workbuddy) live in this repo — `scoop install mybucket/<app>` pulls from here
+- **Custom manifests** (workbuddy, yuanbao) live in this repo — `scoop install mybucket/<app>` pulls from here
 - **Public bucket apps** stay in their upstream buckets — no duplication, auto-updates flow from upstream
+- **winget apps** (ima) — some apps don't have stable Scoop-compatible download URLs, so they go through winget instead
 - **packages.json** is the declarative source of truth for the full app list
-- **setup.ps1** reads packages.json and installs everything in one shot
+- **setup.ps1** reads packages.json and installs everything in one shot (Scoop + winget)
 
 ## Adding a New App
 
@@ -93,3 +97,5 @@ The full app suite is declared in [packages.json](packages.json) — 100+ apps a
 
 - **WorkBuddy**: The official Extras-CN bucket uses `innounp` for Inno Setup format, but newer versions (>=5.1.7) switched to NSIS. This manifest handles NSIS extraction properly.
 - **opencode**: Now available in the `main` bucket — no longer needs a custom manifest here.
+- **元宝 (yuanbao)**: CDN URL `yuanbao_10046_x64.exe` 不含版本号，始终指向最新版。新版本发布后需手动更新 hash（运行 `scoop install mybucket/yuanbao` 时 Scoop 会自动下载最新 exe，但 hash 校验会失败，需要手动更新 yuanbao.json 中的 hash 和 version）。
+- **ima**: 下载 URL 通过 API 动态生成，无法创建稳定 Scoop manifest。通过 winget 安装 (`winget install Tencent.ima-copilot`)。
