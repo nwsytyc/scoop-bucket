@@ -1,20 +1,97 @@
-# Personal Scoop Bucket
+# nwsytyc/scoop-bucket
 
-My personal Scoop bucket for apps I use.
+Personal Scoop bucket — custom manifests + declarative package list for cross-machine sync.
 
-## Usage
+## Quick Start (New Machine)
 
-```bash
+```powershell
+# 1. Install Scoop (if not already)
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+irm get.scoop.sh | iex
+
+# 2. Add this bucket
 scoop bucket add mybucket https://github.com/nwsytyc/scoop-bucket.git
-scoop install mybucket/<app-name>
+
+# 3. One-shot full environment sync
+powershell -File "$HOME\scoop\buckets\mybucket\setup.ps1"
 ```
 
-## Apps
+Or with options:
+
+```powershell
+# Dry run (see what would be installed without actually doing it)
+powershell -File setup.ps1 -DryRun
+
+# Only add buckets, skip app installation
+powershell -File setup.ps1 -SkipApps
+
+# Only install apps (buckets already set up)
+powershell -File setup.ps1 -SkipBuckets
+```
+
+## Update All Apps (Any Machine)
+
+```powershell
+scoop update --all
+```
+
+## Custom Manifests
+
+Apps not available in any public Scoop bucket, maintained here:
 
 | App | Description |
 |-----|-------------|
-| workbuddy | AI-native desktop Agent WorkBench |
+| [workbuddy](workbuddy.json) | AI-native desktop Agent WorkBench (腾讯云 CodeBuddy) |
+| [opencode](opencode.json) | Open source AI coding agent |
+
+### Install individually
+
+```powershell
+scoop bucket add mybucket https://github.com/nwsytyc/scoop-bucket.git
+scoop install mybucket/workbuddy
+scoop install mybucket/opencode
+```
+
+## Package List
+
+The full app suite is declared in [packages.json](packages.json) — 100+ apps across 12 buckets.
+
+| Bucket | Apps | Count |
+|--------|------|-------|
+| main | 1password-cli, 7zip, aria2, bbdown, bun, cacert, clink, cmder, claude-code, codex, curl, dark, deepseek-tui, edit, ffmpeg, gh, git, gow, innounp, kimi-cli, lsd, neovim, nodejs-lts, oh-my-posh, oh-my-pi, python, scoop-search, sudo, tldr, wget, warp, yt-dlp | 32 |
+| extras | anki, beyondcompare, calibre, carotdav, cc-switch, clash-party, cupscale, discord, ditto, dropit, emacs, everything, fastcopy, flow-launcher, foobar2000, foobar2000-encoders, fork, freetube, gimp, glazewm, googlechrome, homebank, joplin, listary, logseq, motrix, neeview, notion, obsidian, opera, potplayer, q-dir, qq, qview, retroarch, sharpkeys, slack, snipaste, telegram, tightvnc, treesheets, typora, unlocker, vncviewer, vscode, wechat, wecom, wireshark, wox, xnview, zebar, zed, zen-browser | 54 |
+| versions | innounp-unicode, nodejs20 | 2 |
+| sysinternals | process-explorer, pstools | 2 |
+| nonportable | zerotier-np | 1 |
+| games | eden, sak, steam | 3 |
+| dorado | powershell | 1 |
+| extras-cn | blender-cn, eudic, pixpin, tencent-meeting, tim, vlc-cn, weasel | 7 |
+| extras-plus | comfyui | 1 |
+| go-musicfox | go-musicfox | 1 |
+| main-plus | sendme | 1 |
+| mybucket | workbuddy, opencode | 2 |
+| **Total** | | **103** |
+
+### Held Packages
+
+| App | Version | Note |
+|-----|---------|------|
+| comfyui | 0.3.66 | Locked to specific version |
+
+## How It Works
+
+- **Custom manifests** (workbuddy, opencode) live in this repo — `scoop install mybucket/<app>` pulls from here
+- **Public bucket apps** stay in their upstream buckets — no duplication, auto-updates flow from upstream
+- **packages.json** is the declarative source of truth for the full app list
+- **setup.ps1** reads packages.json and installs everything in one shot
+
+## Adding a New App
+
+1. If it's in a public bucket: add to the appropriate list in `packages.json`
+2. If it's custom (no public manifest): create a `.json` manifest here, add to `mybucket` list in `packages.json`
+3. Commit & push — all machines can sync via `scoop update`
 
 ## Notes
 
-- WorkBuddy: The official Extras-CN bucket uses `innounp` for Inno Setup format, but newer versions (≥5.1.7) switched to NSIS format. This manifest handles the NSIS extraction properly.
+- **WorkBuddy**: The official Extras-CN bucket uses `innounp` for Inno Setup format, but newer versions (>=5.1.7) switched to NSIS. This manifest handles NSIS extraction properly.
+- **opencode**: Auto-generated manifest not available in any public bucket; maintained here with GitHub autoupdate.
