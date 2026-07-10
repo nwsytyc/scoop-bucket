@@ -1,0 +1,32 @@
+{
+    "version": "0.7.2",
+    "description": "OmniGet - Open source desktop app for downloading and organizing media from 1800+ sites, with built-in PDF/EPUB readers, music player, and note-taking",
+    "homepage": "https://github.com/tonhowtf/omniget",
+    "license": {
+        "identifier": "GPL-3.0",
+        "url": "https://github.com/tonhowtf/omniget/blob/main/LICENSE"
+    },
+    "url": "https://github.com/tonhowtf/omniget/releases/download/v0.7.2/omniget_0.7.2_x64-setup.exe",
+    "hash": "d5c918d3cad16cb66f43d0ae2988472ef25fdb7cc8dd9d68d8d113579e63a779",
+    "installer": {
+        "script": [
+            "7z x \"$dir\$fname\" -o\"$dir\" -tnsis -y | Out-Null",
+            "Remove-Item \"$dir\`$PLUGINSDIR\" -Recurse -Force -ErrorAction SilentlyContinue",
+            "Remove-Item \"$dir\$fname\" -Force"
+        ]
+    },
+    "bin": "OmniGet.exe",
+    "shortcuts": [
+        [
+            "OmniGet.exe",
+            "OmniGet"
+        ]
+    ],
+    "checkver": {
+        "github": "https://github.com/tonhowtf/omniget",
+        "regex": "OmniGet/v?([\d.]+)"
+    },
+    "autoupdate": {
+        "url": "https://github.com/tonhowtf/omniget/releases/download/v$version/omniget_$version_x64-setup.exe"
+    }
+}
