@@ -47,6 +47,7 @@ Apps not available in any public Scoop bucket, maintained here:
 | [updf](updf.json) | UPDF - AI-powered PDF editor |
 | [typeless](typeless.json) | Typeless - Interactive storytelling platform |
 | [vncviewer](vncviewer.json) | VNC Viewer - Control VNC enabled computers remotely (RealVNC) |
+| [typora](typora.json) | Typora - Minimal Markdown editor and reader (mirrored from extras for faster updates) |
 
 ### Install individually
 
@@ -58,6 +59,7 @@ scoop install mybucket/thebrain
 scoop install mybucket/updf
 scoop install mybucket/typeless
 scoop install mybucket/vncviewer
+scoop install mybucket/typora
 ```
 
 ## Package List
@@ -67,7 +69,7 @@ The full app suite is declared in [packages.json](packages.json) — 100+ apps a
 | Bucket | Apps | Count |
 |--------|------|-------|
 | main | 1password-cli, 7zip, aria2, bbdown, bun, cacert, clink, cmder, claude-code, codex, curl, dark, deepseek-tui, edit, ffmpeg, gh, git, gow, innounp, kimi-cli, lsd, neovim, nodejs-lts, oh-my-posh, oh-my-pi, opencode, python, scoop-search, sudo, tldr, wget, warp, yt-dlp | 33 |
-| extras | anki, beyondcompare, calibre, carotdav, cc-switch, clash-party, cupscale, discord, ditto, dropit, emacs, everything, fastcopy, flow-launcher, foobar2000, foobar2000-encoders, fork, freetube, gimp, glazewm, googlechrome, homebank, joplin, listary, logseq, motrix, neeview, notion, obsidian, opera, potplayer, q-dir, qq, qview, retroarch, sharpkeys, slack, snipaste, telegram, tightvnc, treesheets, typora, unlocker, vscode, wechat, wecom, wireshark, wox, xnview, zebar, zed, zen-browser | 53 |
+| extras | anki, beyondcompare, calibre, carotdav, cc-switch, clash-party, cupscale, discord, ditto, dropit, emacs, everything, fastcopy, flow-launcher, foobar2000, foobar2000-encoders, fork, freetube, gimp, glazewm, googlechrome, homebank, joplin, listary, logseq, motrix, neeview, notion, obsidian, opera, potplayer, q-dir, qq, qview, retroarch, sharpkeys, slack, snipaste, telegram, tightvnc, treesheets, unlocker, vscode, wechat, wecom, wireshark, wox, xnview, zebar, zed, zen-browser | 52 |
 | versions | innounp-unicode, nodejs20 | 2 |
 | sysinternals | process-explorer, pstools | 2 |
 | nonportable | zerotier-np | 1 |
@@ -77,7 +79,7 @@ The full app suite is declared in [packages.json](packages.json) — 100+ apps a
 | extras-plus | comfyui | 1 |
 | go-musicfox | go-musicfox | 1 |
 | main-plus | sendme | 1 |
-| mybucket | workbuddy, yuanbao, thebrain, updf, typeless, vncviewer | 6 |
+| mybucket | workbuddy, yuanbao, thebrain, updf, typeless, vncviewer, typora | 7 |
 | **winget** | Tencent.ima-copilot, Tencent.Yuanbao | 2 |
 | **Total** | | **114** |
 
@@ -109,3 +111,4 @@ The full app suite is declared in [packages.json](packages.json) — 100+ apps a
 - **ima**: 下载 URL 通过 API 动态生成，无法创建稳定 Scoop manifest。通过 winget 安装 (`winget install Tencent.ima-copilot`)。
 - **TheBrain**: 下载 URL `salesapi.thebrain.com/?a=doDirectDownload&id=15002` 是 API 重定向，始终指向最新版 NSIS 安装包。新版本发布后需手动更新 hash。
 - **VNC Viewer (vncviewer)**: RealVNC 官方已停止提供独立 EXE 下载，现仅提供 MSI 安装包（RealVNC-Connect-Viewer-x.x.x-Windows.msi.zip）。使用 lessmsi 提取 MSI 内容。版本号通过 checkver 从官网下载页面获取。
+- **Typora (typora)**: 镜像自 extras 桶，因为官方源更新较慢导致 app 内部一直提示更新。本桶直接从 `download.typora.io` 拉取最新版本。
