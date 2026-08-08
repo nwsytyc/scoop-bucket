@@ -1,5 +1,5 @@
 {
-    "version": "2.76.0.22",
+    "version": "2.37.0.617",
     "description": "腾讯元宝 - AI智能助手，支持深度推理、联网搜索、划词搜索及多模态交互",
     "homepage": "https://yuanbao.tencent.com",
     "license": {
@@ -7,7 +7,7 @@
         "url": "https://yuanbao.tencent.com"
     },
     "url": "https://cdn-hybrid-prod.hunyuan.tencent.com/Desktop/business/channels/yuanbao_10046_x64.exe",
-    "hash": "f55f1a77e29400a144a4b65b888dc4053a4776eb8f004759845c564575fa64b0",
+    "hash": "2D3DE69DB63D7949A04575E65170FCD44F512CFEE91F063B32FC26C4D7D1E122",
     "installer": {
         "script": [
             "7z e \"$dir\\$fname\" -o\"$dir\\_nsis_temp\" -tnsis -y | Out-Null",
