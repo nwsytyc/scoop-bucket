@@ -1,5 +1,5 @@
 {
-    "version": "2.37.0.617",
+    "version": "2.81.0.629",
     "description": "腾讯元宝 - AI智能助手，支持深度推理、联网搜索、划词搜索及多模态交互",
     "homepage": "https://yuanbao.tencent.com",
     "license": {
@@ -7,7 +7,7 @@
         "url": "https://yuanbao.tencent.com"
     },
     "url": "https://cdn-hybrid-prod.hunyuan.tencent.com/Desktop/business/channels/yuanbao_10046_x64.exe",
-    "hash": "2D3DE69DB63D7949A04575E65170FCD44F512CFEE91F063B32FC26C4D7D1E122",
+    "hash": "fba26a6d4c45be92b8c8cf0b0772846328a7ce0c00e2941f1553aad71836d1ed",
     "installer": {
         "script": [
             "7z e \"$dir\\$fname\" -o\"$dir\\_nsis_temp\" -tnsis -y | Out-Null",
@@ -34,7 +34,7 @@
     ],
     "checkver": {
         "url": "https://pc.qq.com/detail/10/detail_45590.html",
-        "regex": "([\\d.]+)"
+        "regex": "(\\d+\\.\\d+\\.\\d+\\.\\d+)"
     },
     "autoupdate": {
         "note": "元宝 CDN URL 不含版本号，始终指向最新版本。新版本发布后需手动更新 hash 和 version。",
